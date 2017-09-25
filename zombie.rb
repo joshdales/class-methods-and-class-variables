@@ -24,6 +24,10 @@ class Zombie
     @@horde
   end
 
+  def self.increase_plague_level
+    @@plague_level += rand(2)
+  end
+
   def self.spawn
     create = rand(@@plague_level)
     create.times do
@@ -32,11 +36,21 @@ class Zombie
     end
   end
 
+  def self.some_die_off
+    rand(10).times do
+      @@horde.delete(@@horde.sample)
+    end
+  end
 
+  def self.new_day
+    Zombie.some_die_off
+    Zombie.spawn
+    Zombie.increase_plague_level
+  end
 
 end
 
 zombie = Zombie.new(rand(10), rand(10))
 puts zombie.inspect
-Zombie.spawn
-puts zombie.inspect
+Zombie.new_day
+puts Zombie.all.inspect
