@@ -19,4 +19,11 @@ class Zombie
       @zombie_strength = zombie_strength
   end
 
+  def self.all
+    @@horde
+  end
+
+
+
+
 end
