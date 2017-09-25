@@ -40,11 +40,11 @@ class Zombie
     if outrun_zombie? == true && survive_attack? == true
       "You escaped"
     elsif outrun_zombie? == true || survive_attack? == true
-      "You became a zombie"
       @@horde << Zombie.new(rand(@@max_speed),  rand(@@max_strength))
+      "You slowly became a zombie"
     else
-      "You died"
       @@horde << Zombie.new(rand(@@max_speed),  rand(@@max_strength))
+      "You died"
     end
   end
 
@@ -59,7 +59,7 @@ class Zombie
   def self.spawn
     create = rand(@@plague_level)
     create.times do
-      new_zombie = Zombie.new(rand(@@max_speed),  rand(@@max_strength))
+      new_zombie = Zombie.new(rand(@@max_speed), rand(@@max_strength))
         @@horde << new_zombie
     end
   end
