@@ -55,3 +55,7 @@ BankAccount.interst_time
 puts my_account.balance
 puts your_account.balance
 puts BankAccount.total_funds
+
+my_account.withdraw(50)
+puts my_account.balance
+puts BankAccount.total_funds
