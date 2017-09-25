@@ -41,10 +41,12 @@ class Zombie
       "You escaped"
     elsif outrun_zombie? == true || survive_attack? == true
       @@horde << Zombie.new(rand(@@max_speed),  rand(@@max_strength))
-      "You slowly became a zombie"
-    else
+      "You survived but slowly became a zombie"
+    elsif outrun_zombie? == false && survive_attack? == false
       @@horde << Zombie.new(rand(@@max_speed),  rand(@@max_strength))
-      "You died"
+      "You died and became a zombie"
+    else
+      "You didn't see any zombies"
     end
   end
 
