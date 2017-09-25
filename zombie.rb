@@ -21,7 +21,15 @@ class Zombie
   end
 
   def outrun_zombie?
-    if rand(@@max_speed) > @@horder[rand(@@horde)]
+    if rand(@@max_speed) > @@horde[rand(@@horde)]
+      true
+    else
+      false
+    end
+  end
+
+  def survive_attack?
+    if rand(@@max_strength) > @@horde[rand(@@horde)]
       true
     else
       false
