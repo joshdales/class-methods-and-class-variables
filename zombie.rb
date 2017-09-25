@@ -17,13 +17,26 @@ class Zombie
       @zombie_strength = @@default_strength
     else
       @zombie_strength = zombie_strength
+    end
   end
 
   def self.all
     @@horde
   end
 
+  def self.spawn
+    create = rand(@@plague_level)
+    create.times do
+      new_zombie = Zombie.new(rand(@@max_speed),  rand(@@max_strength))
+        @@horde << new_zombie
+    end
+  end
 
 
 
 end
+
+zombie = Zombie.new(rand(10), rand(10))
+puts zombie.inspect
+Zombie.spawn
+puts zombie.inspect
