@@ -1,6 +1,6 @@
 class BankAccount
   @@interest_rate = 1.0
-  @@account = []
+  @@accounts = []
 
   def initialize
     @balance = 0
@@ -16,17 +16,18 @@ class BankAccount
 
   def self.create
     new_account = BankAccount.new
-    @@account << new_account
+    @@accounts << new_account
+    new_account
   end
 
-  def self.see_all_accounts
-    @@account
-  end
 
 end
 
 my_account = BankAccount.create
-puts my_account.inspect
 
 your_account = BankAccount.create
-puts BankAccount.see_all_accounts
+puts my_account.inspect
+
+my_account.deposit(100)
+your_account.deposit(50)
+puts my_account.inspect
