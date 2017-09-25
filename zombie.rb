@@ -21,7 +21,7 @@ class Zombie
   end
 
   def outrun_zombie?
-    if rand(@@max_speed) > @@horde[rand(@@horde)]
+    if rand(@@max_speed) > @zombie_speed
       true
     else
       false
@@ -29,10 +29,22 @@ class Zombie
   end
 
   def survive_attack?
-    if rand(@@max_strength) > @@horde[rand(@@horde)]
+    if rand(@@max_strength) > @zombie_strength
       true
     else
       false
+    end
+  end
+
+  def encounter
+    if outrun_zombie? == true && survive_attack? == true
+      "You escaped"
+    elsif outrun_zombie? == true || survive_attack? == true
+      "You became a zombie"
+      @@horde << Zombie.new(rand(@@max_speed),  rand(@@max_strength))
+    else
+      "You died"
+      @@horde << Zombie.new(rand(@@max_speed),  rand(@@max_strength))
     end
   end
 
@@ -66,8 +78,20 @@ class Zombie
 
 end
 
-Zombie.spawn
 puts Zombie.all.inspect
-
 Zombie.new_day
 puts Zombie.all.inspect
+zombie1 = Zombie.all[0]
+zombie2 = Zombie.all[1]
+zombie3 = Zombie.all[2]
+puts zombie1.encounter
+puts zombie2.encounter
+puts zombie3.encounter
+Zombie.new_day
+puts Zombie.all.inspect
+zombie1 = Zombie.all[0]
+zombie2 = Zombie.all[1]
+zombie3 = Zombie.all[2]
+puts zombie1.encounter
+puts zombie2.encounter
+puts zombie3.encounter
