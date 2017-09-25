@@ -2,9 +2,12 @@ class Book
   @@on_shelf = []
   @@on_loan = []
 
-  def initialize
+  def initialize(title, author, isbn)
     @on_loan = false
     @due_date = nil
+    @title = title
+    @author = author
+    @ISBN = isbn
   end
 
   def borrow
@@ -41,8 +44,8 @@ class Book
     Time.at(@due_date)
   end
 
-  def self.create
-    new_book = Book.new
+  def self.create(title, author, isbn)
+    new_book = Book.new(title, author, isbn)
     @@on_shelf << new_book
     new_book
   end
@@ -59,13 +62,28 @@ class Book
     @@on_shelf
   end
 
+  def self.overdue_books
+    @@on_loan.each do |book|
+      if @due_date < Time.now + (2*7*24*60*60)
+        return book
+      end
+    end
+  end
+
 end
 
-book = Book.create
-book.borrow
-puts Book.on_shelf?
-puts book.inspect
 
-puts book.due_date
-book.return_to_libary
-puts book.inspect
+sister_outsider = Book.create("Sister Outsider", "Audre Lorde", "9781515905431")
+aint_i = Book.create("Ain't I a Woman?", "Bell Hooks", "9780896081307")
+if_they_come = Book.create("If They Come in the Morning", "Angela Y. Davis", "0893880221")
+puts Book.on_shelf?
+
+
+aint_i.borrow
+puts Book.on_shelf?
+puts aint_i.inspect
+
+puts aint_i.due_date
+aint_i.return_to_libary
+puts sister_outsider.inspect
+puts aint_i.inspect
