@@ -20,6 +20,14 @@ class Zombie
     end
   end
 
+  def outrun_zombie?
+    if rand(@@max_speed) > @@horder[rand(@@horde)]
+      true
+    else
+      false
+    end
+  end
+
   def self.all
     @@horde
   end
@@ -50,7 +58,8 @@ class Zombie
 
 end
 
-zombie = Zombie.new(rand(10), rand(10))
-puts zombie.inspect
+Zombie.spawn
+puts Zombie.all.inspect
+
 Zombie.new_day
 puts Zombie.all.inspect
