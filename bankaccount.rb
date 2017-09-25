@@ -6,6 +6,10 @@ class BankAccount
     @balance = 0
   end
 
+  def balance
+    @balance
+  end
+
   def deposit(money_in)
     @balance += money_in
   end
@@ -20,14 +24,22 @@ class BankAccount
     new_account
   end
 
+  def self.total_funds
+    total = 0
+    @@accounts.each do |single_account|
+      total += single_account.balance
+    end
+  return total
+  end
 
 end
 
 my_account = BankAccount.create
-
 your_account = BankAccount.create
-puts my_account.inspect
-
-my_account.deposit(100)
-your_account.deposit(50)
-puts my_account.inspect
+puts my_account.balance
+puts BankAccount.total_funds
+my_account.deposit(200)
+your_account.deposit(1000)
+puts my_account.balance
+puts your_account.balance
+puts BankAccount.total_funds
