@@ -14,8 +14,19 @@ class BankAccount
     @balance -= money_out
   end
 
+  def self.create
+    new_account = BankAccount.new
+    @@account << new_account
+  end
+
+  def self.see_all_accounts
+    @@account
+  end
+
 end
 
-bank = BankAccount.new
+my_account = BankAccount.create
+puts my_account.inspect
 
-puts bank.inspect
+your_account = BankAccount.create
+puts BankAccount.see_all_accounts
