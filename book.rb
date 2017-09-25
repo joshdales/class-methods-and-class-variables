@@ -44,7 +44,6 @@ class Book
     Time.at(@due_date)
   end
 
-
   def self.create(title, author, isbn)
     new_book = Book.new(title, author, isbn)
     @@on_shelf << new_book
@@ -63,10 +62,18 @@ class Book
     @@on_shelf
   end
 
+  def self.available
+    @@on_shelf
+  end
+
+  def self.borrowed
+    @@on_loan
+  end
+
   def self.browse
     @@on_shelf.sample
   end
-  
+
   def self.overdue_books
     @@on_loan.each do |book|
       if @due_date < Time.now + (2*7*24*60*60)
