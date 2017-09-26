@@ -29,7 +29,7 @@ class BankAccount
     @@accounts.each do |account|
       total += account.balance
     end
-  return total
+    total
   end
 
   def self.interst_time

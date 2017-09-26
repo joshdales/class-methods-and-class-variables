@@ -53,7 +53,7 @@ class Book
   end
 
   def self.current_due_date
-    Time.now + (2*7*24*60*60)
+    Time.now + (2 * 7 * 24 * 60 * 60)
   end
 
   def self.on_loan?
@@ -79,13 +79,12 @@ class Book
   def self.overdue
     @@on_loan.each do |book|
       if book.due_date < Time.now
-         @@overdue << book
+        @@overdue << book
       end
     end
   end
 
 end
-
 
 sister_outsider = Book.create("Sister Outsider", "Audre Lorde", "9781515905431")
 aint_i = Book.create("Ain't I a Woman?", "Bell Hooks", "9780896081307")

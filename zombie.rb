@@ -62,7 +62,7 @@ class Zombie
     create = rand(@@plague_level)
     create.times do
       new_zombie = Zombie.new(rand(@@max_speed), rand(@@max_strength))
-        @@horde << new_zombie
+      @@horde << new_zombie
     end
   end
 
