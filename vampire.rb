@@ -1,33 +1,39 @@
 class Vampire
-  @name
-  @age
-  @@in_coffin = false
-  @@drank_blood_today = false
   @@coven = []
 
   def initialize(name, age)
     @name = name
     @age = age
+    @in_coffin = false
+    @drank_blood_today = false
     @@coven << @self
   end
 
-  def self.drink_blood
-    @@drank_blood_today = true
+  def drink_blood
+    @drank_blood_today = true
   end
 
-  def self.go_home
-    @@in_coffin = true
+  def go_home
+    @in_coffin = true
   end
 
   def self.sunset
-    @@drank_blood_today = false
-    @@in_coffin = false
+    @@coven.each do
+      @drank_blood_today = false
+      @in_coffin = false
+    end
   end
 
   def self.sunrise
-    if @@in_coffin == false && @@drank_blood_today == false
-      @@coven.delete(self)
+    @@coven.each do
+      if @in_coffin == false && @drank_blood_today == false
+        @@coven.delete(self)
+      end
     end
+  end
+
+  def self.coven
+    @@coven
   end
 
 end
@@ -42,12 +48,14 @@ puts vampire2.inspect
 puts vampire3.inspect
 puts vampire4.inspect
 
-puts Vampire.go_home
-puts Vampire.drink_blood
+puts Vampire.coven.inspect
+
+puts vampire1.go_home
+puts vampire2.drink_blood
 
 puts vampire1.inspect
 puts vampire2.inspect
 puts vampire3.inspect
 puts vampire4.inspect
 
-puts Vampire.sunset
+puts Vampire.sunset.inspect
